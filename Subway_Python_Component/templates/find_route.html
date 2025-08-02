@@ -1,0 +1,448 @@
+{% extends "base.html" %}
+
+{% block title %}Find Route - Subway Navigator{% endblock %}
+
+{% block content %}
+<div style="margin-bottom: 20px;">
+    <a href="/" class="btn" style="background: rgba(255,255,255,0.2); 
+       backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3); 
+       padding: 10px 20px; font-size: 0.9rem; min-width: auto;">
+        ← Back to Dashboard
+    </a>
+</div>
+
+<div class="card">
+    <h2 style="text-align: center; margin-bottom: 30px; color: #333;">Find Your Route</h2>
+    <p style="text-align: center; margin-bottom: 40px; color: #666;">
+        Select your starting station and destination to find the best routes
+    </p>
+    
+    <form id="routeForm" method="POST">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px;">
+            <div class="form-group">
+                <label for="start_station">Starting Station</label>
+                <select id="start_station" name="start_station" class="form-control" required>
+                    <option value="">Select starting station...</option>
+                    <option value="Admiralty">Admiralty</option>
+                    <option value="Airport">Airport</option>
+                    <option value="AsiaWorld–Expo">AsiaWorld–Expo</option>
+                    <option value="Austin">Austin</option>
+                    <option value="Causeway Bay">Causeway Bay</option>
+                    <option value="Central">Central</option>
+                    <option value="Chai Wan">Chai Wan</option>
+                    <option value="Che Kung Temple">Che Kung Temple</option>
+                    <option value="Cheung Sha Wan">Cheung Sha Wan</option>
+                    <option value="Choi Hung">Choi Hung</option>
+                    <option value="City One">City One</option>
+                    <option value="Diamond Hill">Diamond Hill</option>
+                    <option value="Disneyland Resort">Disneyland Resort</option>
+                    <option value="East Tsim Sha Tsui">East Tsim Sha Tsui</option>
+                    <option value="Exhibition Centre">Exhibition Centre</option>
+                    <option value="Fanling">Fanling</option>
+                    <option value="Fo Tan">Fo Tan</option>
+                    <option value="Fortress Hill">Fortress Hill</option>
+                    <option value="HKU">HKU</option>
+                    <option value="Hang Hau">Hang Hau</option>
+                    <option value="Heng Fa Chuen">Heng Fa Chuen</option>
+                    <option value="Heng On">Heng On</option>
+                    <option value="Hin Keng">Hin Keng</option>
+                    <option value="Ho Man Tin">Ho Man Tin</option>
+                    <option value="Hong Kong">Hong Kong</option>
+                    <option value="Hung Hom">Hung Hom</option>
+                    <option value="Hung Hom ">Hung Hom </option>
+                    <option value="Jordan">Jordan</option>
+                    <option value="Kai Tak">Kai Tak</option>
+                    <option value="Kam Sheung Road">Kam Sheung Road</option>
+                    <option value="Kennedy Town">Kennedy Town</option>
+                    <option value="Kowloon">Kowloon</option>
+                    <option value="Kowloon Bay">Kowloon Bay</option>
+                    <option value="Kowloon Tong">Kowloon Tong</option>
+                    <option value="Kwai Fong">Kwai Fong</option>
+                    <option value="Kwai Hing">Kwai Hing</option>
+                    <option value="Kwun Tong">Kwun Tong</option>
+                    <option value="LOHAS Park">LOHAS Park</option>
+                    <option value="Lai Chi Kok">Lai Chi Kok</option>
+                    <option value="Lai King">Lai King</option>
+                    <option value="Lam Tin">Lam Tin</option>
+                    <option value="Lei Tung">Lei Tung</option>
+                    <option value="Lo Wu">Lo Wu</option>
+                    <option value="Lok Fu">Lok Fu</option>
+                    <option value="Lok Ma Chau">Lok Ma Chau</option>
+                    <option value="Long Ping">Long Ping</option>
+                    <option value="Ma On Shan">Ma On Shan</option>
+                    <option value="Mei Foo">Mei Foo</option>
+                    <option value="Mong Kok">Mong Kok</option>
+                    <option value="Mong Kok East">Mong Kok East</option>
+                    <option value="Nam Cheong">Nam Cheong</option>
+                    <option value="Ngau Tau Kok">Ngau Tau Kok</option>
+                    <option value="North Point">North Point</option>
+                    <option value="Ocean Park">Ocean Park</option>
+                    <option value="Olympic">Olympic</option>
+                    <option value="Po Lam">Po Lam</option>
+                    <option value="Prince Edward">Prince Edward</option>
+                    <option value="Quarry Bay">Quarry Bay</option>
+                    <option value="Racecourse">Racecourse</option>
+                    <option value="Sai Wan Ho">Sai Wan Ho</option>
+                    <option value="Sai Ying Pun">Sai Ying Pun</option>
+                    <option value="Sha Tin">Sha Tin</option>
+                    <option value="Sha Tin Wai">Sha Tin Wai</option>
+                    <option value="Sham Shui Po">Sham Shui Po</option>
+                    <option value="Shau Kei Wan">Shau Kei Wan</option>
+                    <option value="Shek Kip Mei">Shek Kip Mei</option>
+                    <option value="Shek Mun">Shek Mun</option>
+                    <option value="Sheung Shui">Sheung Shui</option>
+                    <option value="Sheung Wan">Sheung Wan</option>
+                    <option value="Siu Hong">Siu Hong</option>
+                    <option value="South Horizons">South Horizons</option>
+                    <option value="Sung Wong Toi">Sung Wong Toi</option>
+                    <option value="Sunny Bay">Sunny Bay</option>
+                    <option value="Tai Koo">Tai Koo</option>
+                    <option value="Tai Po Market">Tai Po Market</option>
+                    <option value="Tai Shui Hang">Tai Shui Hang</option>
+                    <option value="Tai Wai">Tai Wai</option>
+                    <option value="Tai Wo">Tai Wo</option>
+                    <option value="Tai Wo Hau">Tai Wo Hau</option>
+                    <option value="Tin Hau">Tin Hau</option>
+                    <option value="Tin Shui Wai">Tin Shui Wai</option>
+                    <option value="Tiu Keng Leng">Tiu Keng Leng</option>
+                    <option value="To Kwa Wan">To Kwa Wan</option>
+                    <option value="Tseung Kwan O">Tseung Kwan O</option>
+                    <option value="Tsim Sha Tsui">Tsim Sha Tsui</option>
+                    <option value="Tsing Yi">Tsing Yi</option>
+                    <option value="Tsuen Wan">Tsuen Wan</option>
+                    <option value="Tsuen Wan West">Tsuen Wan West</option>
+                    <option value="Tuen Mun">Tuen Mun</option>
+                    <option value="Tung Chung">Tung Chung</option>
+                    <option value="University ">University </option>
+                    <option value="Wan Chai">Wan Chai</option>
+                    <option value="Whampoa">Whampoa</option>
+                    <option value="Wong Chuk Hang">Wong Chuk Hang</option>
+                    <option value="Wong Tai Sin">Wong Tai Sin</option>
+                    <option value="Wu Kai Sha">Wu Kai Sha</option>
+                    <option value="Yau Ma Tei">Yau Ma Tei</option>
+                    <option value="Yau Tong">Yau Tong</option>
+                    <option value="Yuen Long">Yuen Long</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="destination_station">Destination Station</label>
+                <select id="destination_station" name="destination_station" class="form-control" required>
+                    <option value="">Select destination...</option>
+                    <option value="Admiralty">Admiralty</option>
+                    <option value="Airport">Airport</option>
+                    <option value="AsiaWorld–Expo">AsiaWorld–Expo</option>
+                    <option value="Austin">Austin</option>
+                    <option value="Causeway Bay">Causeway Bay</option>
+                    <option value="Central">Central</option>
+                    <option value="Chai Wan">Chai Wan</option>
+                    <option value="Che Kung Temple">Che Kung Temple</option>
+                    <option value="Cheung Sha Wan">Cheung Sha Wan</option>
+                    <option value="Choi Hung">Choi Hung</option>
+                    <option value="City One">City One</option>
+                    <option value="Diamond Hill">Diamond Hill</option>
+                    <option value="Disneyland Resort">Disneyland Resort</option>
+                    <option value="East Tsim Sha Tsui">East Tsim Sha Tsui</option>
+                    <option value="Exhibition Centre">Exhibition Centre</option>
+                    <option value="Fanling">Fanling</option>
+                    <option value="Fo Tan">Fo Tan</option>
+                    <option value="Fortress Hill">Fortress Hill</option>
+                    <option value="HKU">HKU</option>
+                    <option value="Hang Hau">Hang Hau</option>
+                    <option value="Heng Fa Chuen">Heng Fa Chuen</option>
+                    <option value="Heng On">Heng On</option>
+                    <option value="Hin Keng">Hin Keng</option>
+                    <option value="Ho Man Tin">Ho Man Tin</option>
+                    <option value="Hong Kong">Hong Kong</option>
+                    <option value="Hung Hom">Hung Hom</option>
+                    <option value="Hung Hom ">Hung Hom </option>
+                    <option value="Jordan">Jordan</option>
+                    <option value="Kai Tak">Kai Tak</option>
+                    <option value="Kam Sheung Road">Kam Sheung Road</option>
+                    <option value="Kennedy Town">Kennedy Town</option>
+                    <option value="Kowloon">Kowloon</option>
+                    <option value="Kowloon Bay">Kowloon Bay</option>
+                    <option value="Kowloon Tong">Kowloon Tong</option>
+                    <option value="Kwai Fong">Kwai Fong</option>
+                    <option value="Kwai Hing">Kwai Hing</option>
+                    <option value="Kwun Tong">Kwun Tong</option>
+                    <option value="LOHAS Park">LOHAS Park</option>
+                    <option value="Lai Chi Kok">Lai Chi Kok</option>
+                    <option value="Lai King">Lai King</option>
+                    <option value="Lam Tin">Lam Tin</option>
+                    <option value="Lei Tung">Lei Tung</option>
+                    <option value="Lo Wu">Lo Wu</option>
+                    <option value="Lok Fu">Lok Fu</option>
+                    <option value="Lok Ma Chau">Lok Ma Chau</option>
+                    <option value="Long Ping">Long Ping</option>
+                    <option value="Ma On Shan">Ma On Shan</option>
+                    <option value="Mei Foo">Mei Foo</option>
+                    <option value="Mong Kok">Mong Kok</option>
+                    <option value="Mong Kok East">Mong Kok East</option>
+                    <option value="Nam Cheong">Nam Cheong</option>
+                    <option value="Ngau Tau Kok">Ngau Tau Kok</option>
+                    <option value="North Point">North Point</option>
+                    <option value="Ocean Park">Ocean Park</option>
+                    <option value="Olympic">Olympic</option>
+                    <option value="Po Lam">Po Lam</option>
+                    <option value="Prince Edward">Prince Edward</option>
+                    <option value="Quarry Bay">Quarry Bay</option>
+                    <option value="Racecourse">Racecourse</option>
+                    <option value="Sai Wan Ho">Sai Wan Ho</option>
+                    <option value="Sai Ying Pun">Sai Ying Pun</option>
+                    <option value="Sha Tin">Sha Tin</option>
+                    <option value="Sha Tin Wai">Sha Tin Wai</option>
+                    <option value="Sham Shui Po">Sham Shui Po</option>
+                    <option value="Shau Kei Wan">Shau Kei Wan</option>
+                    <option value="Shek Kip Mei">Shek Kip Mei</option>
+                    <option value="Shek Mun">Shek Mun</option>
+                    <option value="Sheung Shui">Sheung Shui</option>
+                    <option value="Sheung Wan">Sheung Wan</option>
+                    <option value="Siu Hong">Siu Hong</option>
+                    <option value="South Horizons">South Horizons</option>
+                    <option value="Sung Wong Toi">Sung Wong Toi</option>
+                    <option value="Sunny Bay">Sunny Bay</option>
+                    <option value="Tai Koo">Tai Koo</option>
+                    <option value="Tai Po Market">Tai Po Market</option>
+                    <option value="Tai Shui Hang">Tai Shui Hang</option>
+                    <option value="Tai Wai">Tai Wai</option>
+                    <option value="Tai Wo">Tai Wo</option>
+                    <option value="Tai Wo Hau">Tai Wo Hau</option>
+                    <option value="Tin Hau">Tin Hau</option>
+                    <option value="Tin Shui Wai">Tin Shui Wai</option>
+                    <option value="Tiu Keng Leng">Tiu Keng Leng</option>
+                    <option value="To Kwa Wan">To Kwa Wan</option>
+                    <option value="Tseung Kwan O">Tseung Kwan O</option>
+                    <option value="Tsim Sha Tsui">Tsim Sha Tsui</option>
+                    <option value="Tsing Yi">Tsing Yi</option>
+                    <option value="Tsuen Wan">Tsuen Wan</option>
+                    <option value="Tsuen Wan West">Tsuen Wan West</option>
+                    <option value="Tuen Mun">Tuen Mun</option>
+                    <option value="Tung Chung">Tung Chung</option>
+                    <option value="University ">University </option>
+                    <option value="Wan Chai">Wan Chai</option>
+                    <option value="Whampoa">Whampoa</option>
+                    <option value="Wong Chuk Hang">Wong Chuk Hang</option>
+                    <option value="Wong Tai Sin">Wong Tai Sin</option>
+                    <option value="Wu Kai Sha">Wu Kai Sha</option>
+                    <option value="Yau Ma Tei">Yau Ma Tei</option>
+                    <option value="Yau Tong">Yau Tong</option>
+                    <option value="Yuen Long">Yuen Long</option>
+                    
+                </select>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-bottom: 30px;">
+            <button type="submit" class="btn" style="font-size: 1.2rem; padding: 15px 40px;">
+                🔍 Find Routes
+            </button>
+        </div>
+    </form>
+</div>
+
+<div class="results-section">
+    <h3>Route Results</h3>
+    <div id="routeResults">
+        <div style="text-align: center; color: #999; padding: 40px;">
+            <div style="font-size: 4rem; margin-bottom: 20px; opacity: 0.3;">🗺️</div>
+            <p>Select your starting station and destination, then click "Find Routes" to see the best options.</p>
+        </div>
+    </div>
+</div>
+
+{% block extra_js %}
+<script>
+document.getElementById('routeForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const startStation = document.getElementById('start_station').value;
+    const destStation = document.getElementById('destination_station').value;
+    
+    if (!startStation || !destStation) {
+        alert('Please select both starting station and destination.');
+        return;
+    }
+    
+    if (startStation === destStation) {
+        alert('Starting station and destination cannot be the same.');
+        return;
+    }
+    
+    // Show loading state
+    const resultsDiv = document.getElementById('routeResults');
+    resultsDiv.innerHTML = `
+        <div style="text-align: center; padding: 40px;">
+            <div style="font-size: 2rem; margin-bottom: 20px;">⏳</div>
+            <p>Finding the best routes from ${startStation} to ${destStation}...</p>
+        </div>
+    `;
+    
+    // Create FormData object to send form data
+    const formData = new FormData();
+    formData.append('start_station', startStation);
+    formData.append('destination_station', destStation);
+    
+    // Send AJAX request to Flask backend
+    fetch('/find-route', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            // Handle error
+            resultsDiv.innerHTML = `
+                <div style="text-align: center; padding: 40px; color: #e74c3c;">
+                    <div style="font-size: 2rem; margin-bottom: 20px;">❌</div>
+                    <p>Error: ${data.error}</p>
+                </div>
+            `;
+        } else {
+            // Display successful results
+            displayRouteResults(data);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        resultsDiv.innerHTML = `
+            <div style="text-align: center; padding: 40px; color: #e74c3c;">
+                <div style="font-size: 2rem; margin-bottom: 20px;">❌</div>
+                <p>An error occurred while finding routes. Please try again.</p>
+            </div>
+        `;
+    });
+});
+
+function displayRouteResults(data) {
+    const resultsDiv = document.getElementById('routeResults');
+    let html = '';
+    
+    // Process "Least Switchings" route
+    if (data.routes["Least Switchings"]) {
+        const leastSwitchings = data.routes["Least Switchings"];
+        html += `
+            <div class="route-result">
+                <h4>Route 1: Least Switchings</h4>
+                <p><strong>From:</strong> ${data.start_station}</p>
+                <p><strong>To:</strong> ${data.destination_station}</p>
+                <p><strong>Total Stations:</strong> ${leastSwitchings.stations}</p>
+                <p><strong>Line Changes:</strong> ${leastSwitchings.turns}</p>
+                
+                <div style="margin-top: 15px;">
+                    <strong>Route Path:</strong>
+                    <div style="background: #f8f9fa; padding: 10px; border-radius: 5px; margin-top: 5px;">
+                        ${leastSwitchings.stationlist.map((station, index) => {
+                            if (index === 0) {
+                                return `<span style="color: #28a745; font-weight: bold;">${station}</span>`;
+                            }
+                            return `<span style="color: #666;">${station}</span>`;
+                        }).join(' → ')}
+                    </div>
+                </div>
+                
+                ${leastSwitchings.switching.length > 0 ? `
+                <div style="margin-top: 15px;">
+                    <strong>Transfer Instructions:</strong>
+                    <ul style="margin-top: 5px; margin-left: 20px;">
+                        ${leastSwitchings.switching.map(transfer => 
+                            `<li style="color: #e74c3c; margin-bottom: 5px;">${transfer}</li>`
+                        ).join('')}
+                    </ul>
+                </div>
+                ` : ''}
+            </div>
+        `;
+    }
+    
+    // Process "Least Stations" route
+    if (data.routes["Least Stations"]) {
+        const leastStations = data.routes["Least Stations"];
+        html += `
+            <div class="route-result">
+                <h4>Route 2: Least Stations</h4>
+                <p><strong>From:</strong> ${data.start_station}</p>
+                <p><strong>To:</strong> ${data.destination_station}</p>
+                <p><strong>Total Stations:</strong> ${leastStations.stations}</p>
+                <p><strong>Line Changes:</strong> ${leastStations.turns}</p>
+                
+                <div style="margin-top: 15px;">
+                    <strong>Route Path:</strong>
+                    <div style="background: #f8f9fa; padding: 10px; border-radius: 5px; margin-top: 5px;">
+                        ${leastStations.stationlist.map((station, index) => {
+                            if (index === 0) {
+                                return `<span style="color: #28a745; font-weight: bold;">${station}</span>`;
+                            }
+                            return `<span style="color: #666;">${station}</span>`;
+                        }).join(' → ')}
+                    </div>
+                </div>
+                
+                ${leastStations.switching.length > 0 ? `
+                <div style="margin-top: 15px;">
+                    <strong>Transfer Instructions:</strong>
+                    <ul style="margin-top: 5px; margin-left: 20px;">
+                        ${leastStations.switching.map(transfer => 
+                            `<li style="color: #e74c3c; margin-bottom: 5px;">${transfer}</li>`
+                        ).join('')}
+                    </ul>
+                </div>
+                ` : ''}
+            </div>
+        `;
+    }
+    
+    resultsDiv.innerHTML = html;
+}
+
+// Add some interactivity to the dropdowns
+document.getElementById('start_station').addEventListener('change', function() {
+    const destSelect = document.getElementById('destination_station');
+    const selectedStart = this.value;
+    
+    // Enable all options first
+    Array.from(destSelect.options).forEach(option => {
+        option.disabled = false;
+        option.style.display = 'block';
+    });
+    
+    // Disable the selected start station in destination dropdown
+    if (selectedStart) {
+        Array.from(destSelect.options).forEach(option => {
+            if (option.value === selectedStart) {
+                option.disabled = true;
+                option.style.display = 'none';
+                if (destSelect.value === selectedStart) {
+                    destSelect.value = '';
+                }
+            }
+        });
+    }
+});
+
+document.getElementById('destination_station').addEventListener('change', function() {
+    const startSelect = document.getElementById('start_station');
+    const selectedDest = this.value;
+    
+    // Enable all options first
+    Array.from(startSelect.options).forEach(option => {
+        option.disabled = false;
+        option.style.display = 'block';
+    });
+    
+    // Disable the selected destination in start dropdown
+    if (selectedDest) {
+        Array.from(startSelect.options).forEach(option => {
+            if (option.value === selectedDest) {
+                option.disabled = true;
+                option.style.display = 'none';
+                if (startSelect.value === selectedDest) {
+                    startSelect.value = '';
+                }
+            }
+        });
+    }
+});
+</script>
+{% endblock %}
+{% endblock %}

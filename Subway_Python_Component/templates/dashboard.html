@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+<img src="old-icon.png" alt="Dashboard icon" />
+{% block title %}Dashboard - Subway Navigator{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div style="text-align: center;">
+        <h2 style="margin-bottom: 30px; color: #333;">Welcome to Hong Kong Subway Navigator</h2>
+        <p style="margin-bottom: 40px; color: #666; font-size: 1.1rem;">
+            Plan your journey with our easy-to-use subway navigation system. 
+            Find the best routes and stay updated with the latest announcements.
+        </p>
+        
+        <div style="display: flex; gap: 30px; justify-content: center; flex-wrap: wrap;">
+            <div style="text-align: center;">
+                <div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); 
+                           padding: 40px; border-radius: 15px; margin-bottom: 20px; 
+                           box-shadow: 0 10px 25px rgba(79, 172, 254, 0.3);">
+                    <div style="font-size: 3rem; margin-bottom: 15px;">🗺️</div>
+                    <h3 style="color: white; margin-bottom: 15px;">Find Route</h3>
+                    <p style="color: rgba(255,255,255,0.9); margin-bottom: 25px;">
+                        Discover the fastest and most efficient routes between stations
+                    </p>
+                    <a href="/find-route" class="btn" style="background: rgba(255,255,255,0.2); 
+                       backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3);">
+                        Start Planning
+                    </a>
+                </div>
+            </div>
+            
+            <div style="text-align: center;">
+                <div style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); 
+                           padding: 40px; border-radius: 15px; margin-bottom: 20px;
+                           box-shadow: 0 10px 25px rgba(250, 112, 154, 0.3);">
+                    <div style="font-size: 3rem; margin-bottom: 15px;">📢</div>
+                    <h3 style="color: white; margin-bottom: 15px;">Announcements</h3>
+                    <p style="color: rgba(255,255,255,0.9); margin-bottom: 25px;">
+                        Stay informed about service updates and important notices
+                    </p>
+                    <a href="/announcements" class="btn" style="background: rgba(255,255,255,0.2); 
+                       backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3);">
+                        View Updates
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <h3 style="color: #667eea; margin-bottom: 20px; text-align: center;">Quick Stats</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+        <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+            <div style="font-size: 2rem; color: #667eea; margin-bottom: 10px;">🚉</div>
+            <h4 style="color: #333;">90+ Stations</h4>
+            <p style="color: #666;">Comprehensive coverage</p>
+        </div>
+        <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+            <div style="font-size: 2rem; color: #667eea; margin-bottom: 10px;">⚡</div>
+            <h4 style="color: #333;">Fast Routes</h4>
+            <p style="color: #666;">Optimized pathfinding</p>
+        </div>
+        <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+            <div style="font-size: 2rem; color: #667eea; margin-bottom: 10px;">🔄</div>
+            <h4 style="color: #333;">Real-time</h4>
+            <p style="color: #666;">Live updates</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
